@@ -2,10 +2,12 @@
 <!DOCTYPE html>
 <html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
-    <meta content='width=device-width, initial-scale=1' name='viewport'/>
-    <title><data:view.title.escaped/></title>
-    <b:include data='blog' name='all-head-content'/>
-
+    <meta content='width=device-width, initial-scale=1' name='viewport' />
+    <title>
+      <data:view.title.escaped /></title>
+    <b:include data='blog' name='all-head-content' />
+    <b:if cond='not data:view.isPage'>
+    <!-- if load not page -->
     <b:skin version='1.3.3'><![CDATA[/*! normalize.css v3.0.1 | MIT License | git.io/normalize */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
 /*
 <!-- Constants -->
@@ -2953,6 +2955,12 @@ margin-left:40px
     <b:if cond='(data:widgets.AdSense.first or data:blog.adsenseClientId) and not data:blog.adsenseAutoAds'>
       <script async='async' src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'/>
     </b:if>
+    
+    <b:else />
+      <script src='https://edinofricaniago.github.io/host/assets/index-DVoHNO1Y.js' type='module'></script>
+      <link href='https://edinofricaniago.github.io/host/assets/index-DiwrgTda.css' rel='stylesheet' />
+      <!-- if page -->
+    </b:if>
     <b:include data='blog' name='google-analytics'/>
 
     <script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'/>
@@ -2965,7 +2973,8 @@ margin-left:40px
     <b:class cond='data:view.isLabelSearch' name='label-view'/>
     <b:class cond='data:view.isSearch and !data:view.isLabelSearch' name='search-view'/>
     <b:class name='version-1-3-3'/>
-
+    <b:if cond='not data:view.isPage'>
+      <!-- if load not page -->
     <b:include name='skipNavigation'/>
 
     <div class='page'>
@@ -3522,7 +3531,7 @@ margin-left:40px
         </b:includable>
                     <b:includable id='homePageLink'><b:comment>Don&#39;t show</b:comment></b:includable>
                     <b:includable id='iframeComments' var='post'>
-  <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
+                      <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
 </b:includable>
                     <b:includable id='inlineAd' var='post'>
           <div>
@@ -3551,7 +3560,7 @@ margin-left:40px
   </div>
 </b:includable>
                     <b:includable id='postBody' var='post'>
-  <!-- If metaDescription is empty, use the post body as the schema.org description too, for G+/FB snippeting. -->
+                      <!-- If metaDescription is empty, use the post body as the schema.org description too, for G+/FB snippeting. -->
   <div class='post-body entry-content float-container' expr:id='&quot;post-body-&quot; + data:post.id'>
     <data:post.body/>
   </div>
@@ -3569,19 +3578,19 @@ margin-left:40px
         </b:includable>
                     <b:includable id='postCommentsAndAd' var='post'>
   <article class='post-outer-container'>
-    <!-- Post title and body -->
+                        <!-- Post title and body -->
     <div class='post-outer'>
       <b:include data='post' name='post'/>
     </div>
 
-    <!-- Comments -->
+                        <!-- Comments -->
     <b:include cond='data:view.isSingleItem' data='post' name='commentPicker'/>
 
-    <!-- Show ad inside post container, after comments, if single item. -->
+                        <!-- Show ad inside post container, after comments, if single item. -->
     <b:include cond='data:view.isSingleItem and data:post.includeAd' data='post' name='inlineAd'/>
   </article>
 
-  <!-- Show ad outside post container (between posts) for feed pages. -->
+                      <!-- Show ad outside post container (between posts) for feed pages. -->
   <b:include cond='data:view.isMultipleItems and data:post.includeAd' data='post' name='inlineAd'/>
 </b:includable>
                     <b:includable id='postCommentsLink'>
@@ -4069,6 +4078,10 @@ margin-left:40px
       </b:section>
     </aside>
 
+    <b:else/>
+      <!-- if page -->
+      <div id='root' />
+    </b:if>
     <b:template-script async='true' name='indie' version='1.0.0'/>
   </body>
 </html>
